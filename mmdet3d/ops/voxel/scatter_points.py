@@ -24,6 +24,7 @@ class _dynamic_scatter(Function):
                 that shares the same voxel coordinates are reduced to one row
             coordinates: [M, ndim] int tensor, voxel coordinates.
         """
+        print('thread num: ' + str(threading.get_ident()) + " points shape: " + str(points.shape) + "  coors: " + str(coors.shape) + "  voxel size: " + str(voxel_size) + " coors_range: " + str(coors_range))
         results = dynamic_point_to_voxel_forward(feats, coors, reduce_type)
         (voxel_feats, voxel_coors, point2voxel_map,
          voxel_points_count) = results
