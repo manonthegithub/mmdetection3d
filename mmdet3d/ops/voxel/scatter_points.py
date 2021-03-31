@@ -1,4 +1,5 @@
 import torch
+import threading
 from torch import nn
 from torch.autograd import Function
 
@@ -34,6 +35,7 @@ class _dynamic_scatter(Function):
             num_points_per_voxel: [M] int32 tensor. Only returned when
             max_points != -1.
         """
+        print('thread num: ' + str(threading.get_ident()) + " points shape: " + str(points.shape) + "  coors: " + str(coors.shape) + "  voxel size: " + str(voxel_size) + " coors_range: " + str(coors_range))
         results = dynamic_point_to_voxel_forward(points, coors, voxel_size,
                                                  coors_range)
         (voxels, voxel_coors, num_points_per_voxel, point_to_voxelidx,

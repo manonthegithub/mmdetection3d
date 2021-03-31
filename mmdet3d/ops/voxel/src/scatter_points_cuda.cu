@@ -14,7 +14,7 @@
   CHECK_CONTIGUOUS(x)
 
 namespace {
-int const threadsPerBlock = sizeof(unsigned long long) * 8;
+int const threadsPerBlock = sizeof(unsigned long long);
 }
 
 template <typename T, typename T_int>
@@ -174,6 +174,7 @@ std::vector<at::Tensor> dynamic_point_to_voxel_forward_gpu(
 
   int col_blocks = at::cuda::ATenCeilDiv(num_points, threadsPerBlock);
   dim3 blocks(col_blocks);
+  // std::cout << "AIS out col_blocks: " << col_blocks << " threadsPerBlock: " << threadsPerBlock << " num_points: " << num_points << std::endl;
   dim3 threads(threadsPerBlock);
   cudaStream_t map_stream = at::cuda::getCurrentCUDAStream();
   AT_DISPATCH_ALL_TYPES(

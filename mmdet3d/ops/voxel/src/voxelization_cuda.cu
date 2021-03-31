@@ -14,7 +14,7 @@
   CHECK_CONTIGUOUS(x)
 
 namespace {
-int const threadsPerBlock = sizeof(unsigned long long) * 8;
+int const threadsPerBlock = sizeof(unsigned long long);
 }
 
 #define CUDA_1D_KERNEL_LOOP(i, n)                            \
