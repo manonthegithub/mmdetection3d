@@ -1,5 +1,4 @@
 import copy
-import threading
 import mmcv
 import numpy as np
 import os
@@ -136,7 +135,6 @@ class KittiDataset(Custom3DDataset):
         if not self.test_mode:
             annos = self.get_ann_info(index)
             input_dict['ann_info'] = annos
-        print('thread num:' + str(threading.get_ident()) + ' gen info is following: ' + str(input_dict))
         return input_dict
 
     def get_ann_info(self, index):
